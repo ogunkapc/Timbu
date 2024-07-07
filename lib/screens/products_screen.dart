@@ -29,6 +29,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: ColorConstants.whiteColor,
       body: Consumer<ProductProvider>(builder: (context, value, child) {
@@ -59,11 +60,8 @@ class _ProductsScreenState extends State<ProductsScreen> {
                           itemCount: productList.length,
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount:
-                                MediaQuery.of(context).size.width >= 500
-                                    ? 5
-                                    : 2,
-                            childAspectRatio: 0.54,
+                            crossAxisCount: size.width >= 500 ? 4 : 2,
+                            childAspectRatio: size.width >= 500 ? 0.54 : 0.54,
                             mainAxisSpacing: 20,
                             crossAxisSpacing: 20,
                           ),

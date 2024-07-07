@@ -19,10 +19,13 @@ class TimbuApi {
 
     if (response.statusCode == 200) {
       Map<String, dynamic> jsonResponse = json.decode(response.body);
+      if (jsonResponse['items'] == null) {
+        throw Exception('No products found');
+      }
       List<dynamic> productsData = jsonResponse['items'];
       return productsData.map((json) => Product.fromJson(json)).toList();
     } else {
-      throw Exception('Failed to load products');
+      throw Exception('Failed to load products: ${response.reasonPhrase}');
     }
   }
 }

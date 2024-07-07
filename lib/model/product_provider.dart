@@ -24,6 +24,7 @@ class ProductProvider extends ChangeNotifier {
   // fetch products from API
   Future<void> fetchProducts() async {
     isLoading = true;
+    _errorMessage = "";
     notifyListeners();
 
     try {
